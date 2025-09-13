@@ -9,10 +9,10 @@ export function Footer() {
     <footer className="mt-16 bg-brand-black border-t border-white/10 text-gray-300">
       <div className="container-section py-12 grid md:grid-cols-4 gap-10">
         <div>
-          <div className="flex items-center gap-2">
-            <div className="h-9 w-9 rounded-full bg-brand-green" />
+          <Link to="/" className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-brand-green rounded-md">
+            <img src="/favicon.svg" alt="Biosun Trade" className="h-9 w-9" />
             <span className="font-semibold text-white text-lg">Biosun Trade</span>
-          </div>
+          </Link>
           <p className="mt-4 text-sm">Fruits exotiques de qualité, traçabilité et logistique maîtrisée.</p>
           <div className="mt-4 space-y-2 text-sm">
             <a className="block text-brand-yellow" href="https://wa.me/32471494048" target="_blank" rel="noreferrer">WhatsApp</a>

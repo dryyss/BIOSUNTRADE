@@ -1,6 +1,32 @@
+import { DotGlobe } from '../ui/DotGlobe';
+import { useEffect, useMemo, useState } from 'react';
+import { Product, loadProducts } from '../../data/products';
+
 export function About() {
+  const [items, setItems] = useState<Product[]>([]);
+  useEffect(() => { loadProducts().then(setItems); }, []);
+  const markers = useMemo(() => {
+    // Mapping très simple pays -> coordonnées (à étendre au besoin)
+    const countryToLatLon: Record<string, { lat: number; lon: number }> = {
+      'Pérou': { lat: -9.19, lon: -75.02 },
+      'Sénégal': { lat: 14.5, lon: -14.45 },
+      'Maroc': { lat: 31.8, lon: -7.1 },
+      'Côte d’Ivoire': { lat: 7.54, lon: -5.55 },
+      'Cote d’Ivoire': { lat: 7.54, lon: -5.55 },
+      'Ghana': { lat: 7.95, lon: -1.03 },
+    };
+    const set = new Map<string, { lat: number; lon: number }>();
+    for (const p of items) {
+      for (const o of p.origins ?? []) {
+        const key = o.trim();
+        const pos = countryToLatLon[key];
+        if (pos) set.set(key, pos);
+      }
+    }
+    return Array.from(set.entries()).map(([label, pos]) => ({ ...pos, label }));
+  }, [items]);
   return (
-    <section id="about" className="container-section py-16">
+    <section id="about" className="container-section py-24 lg:py-28 min-h-[70vh]">
       <div className="grid md:grid-cols-2 gap-8 items-center">
         <div>
           <h2 className="text-2xl md:text-3xl font-bold">Pourquoi Biosun Trade</h2>
@@ -17,7 +43,7 @@ export function About() {
             <li className="p-3 rounded-md bg-white/5 border border-white/10">Certifs BIO/GlobalG.A.P.</li>
           </ul>
         </div>
-        <div className="aspect-[4/3] rounded-xl bg-[url('https://images.unsplash.com/photo-1513040935293-e4780a46b5eb?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center" />
+        <DotGlobe className="aspect-square w-full h-auto" dotColor="#22D3EE" continentColor="#FDE047" backgroundColor="transparent" density={64} speed={0.28} showContinents markers={markers} sizeFactor={0.48} />
       </div>
     </section>
   );

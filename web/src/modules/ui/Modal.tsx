@@ -5,9 +5,10 @@ type ModalProps = {
   onClose: () => void;
   title?: string;
   children: ReactNode;
+  autoCloseMs?: number;
 };
 
-export function Modal({ open, onClose, title, children }: ModalProps) {
+export function Modal({ open, onClose, title, children, autoCloseMs }: ModalProps) {
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -22,6 +23,3 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
     </div>
   );
 }
-
-
-

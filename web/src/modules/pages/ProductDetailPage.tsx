@@ -1,17 +1,57 @@
 import { useParams, Link } from 'react-router-dom';
-import { PRODUCTS } from '../../data/products';
+import { Product, loadProducts } from '../../data/products';
 import { motion } from 'framer-motion';
+import { Button } from '../ui/Button';
+import { useEffect, useState } from 'react';
 
 export function ProductDetailPage() {
   const { slug } = useParams();
-  const product = PRODUCTS.find((p) => p.slug === slug);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!product) {
+  useEffect(() => {
+    let mounted = true;
+    setLoading(true);
+    loadProducts().then((items) => {
+      if (!mounted) return;
+      const found = items.find((p) => p.slug === slug) ?? null;
+      setProduct(found);
+      setLoading(false);
+    });
+    return () => {
+      mounted = false;
+    };
+  }, [slug]);
+
+  if (!loading && !product) {
     return (
-      <div className="container-section py-16">
-        <p>Produit introuvable.</p>
-        <Link to="/produits" className="text-brand.green">Retour aux produits</Link>
-      </div>
+      <section className="relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            background:
+              'radial-gradient(circle at 0% 0%, #66BB2E22, transparent 40%), radial-gradient(circle at 100% 20%, #F5A62322, transparent 40%)',
+          }}
+        />
+        <div className="container-section py-24 relative text-center">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <h1 className="text-4xl md:text-5xl font-extrabold">Produit introuvable</h1>
+            <p className="mt-4 text-gray-300">Le produit demandé n’existe pas ou a été retiré.</p>
+            <div className="mt-8 flex items-center justify-center gap-4">
+              <Button to="/produits">Voir tous les produits</Button>
+              <Button to="/" variant="outline">Retour à l’accueil</Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    );
+  }
+
+  if (loading || !product) {
+    return (
+      <section className="container-section py-24">
+        <div className="animate-pulse h-64 rounded-2xl bg-white/5 border border-white/10" />
+      </section>
     );
   }
 
@@ -38,7 +78,7 @@ export function ProductDetailPage() {
             <Link to="/contact" className="inline-block mt-6 px-5 py-3 rounded-md bg-brand-green text-white font-medium">Demander une offre</Link>
           </motion.div>
           <motion.div initial={{opacity:0, x:20}} animate={{opacity:1, x:0}} transition={{duration:.5}} className="rounded-2xl overflow-hidden border border-white/10">
-            <div className="aspect-[16/11] bg-cover bg-center" style={{ backgroundImage: `url("${product.image}")` }} />
+            <div className="aspect-[16/11] bg-cover bg-center" style={{ backgroundImage: `url("${encodeURI(product.couverture || product.secondaryCover || '')}")` }} />
           </motion.div>
         </div>
       </section>
@@ -48,7 +88,7 @@ export function ProductDetailPage() {
           {(() => {
             const list = [product.secondaryCover, ...(product.gallery ?? [])]
               .filter((x): x is string => !!x)
-              .filter((src) => src !== product.image && src !== product.treeImage);
+              .filter((src) => src !== product.couverture && src !== product.treeImage);
             for (let i = list.length - 1; i > 0; i--) {
               const j = Math.floor(Math.random() * (i + 1));
               [list[i], list[j]] = [list[j], list[i]];

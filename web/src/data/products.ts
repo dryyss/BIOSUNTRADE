@@ -42,6 +42,13 @@ async function resolveCoverUrl(slug: string, fallback?: string): Promise<string>
     (b: string) => `${b}/cover.webp`,
     (b: string) => `${b}/cover%20.jpeg`, // gère le fichier "cover .jpeg" avec espace
     (b: string) => `${b}/cover%20.jpg`,  // gère le fichier "cover .jpg" avec espace
+    // variantes françaises
+    (b: string) => `${b}/couverture.jpeg`,
+    (b: string) => `${b}/couverture.jpg`,
+    (b: string) => `${b}/couverture.png`,
+    (b: string) => `${b}/couverture.webp`,
+    (b: string) => `${b}/couverture%20.jpeg`,
+    (b: string) => `${b}/couverture%20.jpg`,
   ];
   for (const base of bases) {
     for (const make of candidates) {
@@ -68,6 +75,13 @@ async function resolveSecondaryCoverUrl(slug: string): Promise<string | undefine
     (b: string) => `${b}/cover2.jpg`,
     (b: string) => `${b}/co2.jpeg`,
     (b: string) => `${b}/co2.jpg`,
+    // variantes françaises
+    (b: string) => `${b}/couverture 2.jpeg`,
+    (b: string) => `${b}/couverture 2.jpg`,
+    (b: string) => `${b}/couverture-2.jpeg`,
+    (b: string) => `${b}/couverture-2.jpg`,
+    (b: string) => `${b}/couverture2.jpeg`,
+    (b: string) => `${b}/couverture2.jpg`,
   ];
   for (const base of bases) {
     for (const make of candidates) {
@@ -91,8 +105,15 @@ async function resolveGalleryUrls(slug: string, coverUrl: string, preset?: strin
     // quelques fichiers sans index
     for (const s of stems) for (const e of exts) candidates.push(`${base}/${s}.${e}`);
     // variantes numérotées
-    for (let i = 1; i <= 8; i++) {
-      for (const s of stems) for (const e of exts) candidates.push(`${base}/${s} (${i}).${e}`);
+    for (let i = 1; i <= 20; i++) {
+      for (const s of stems) for (const e of exts) {
+        // motif avec parenthèses: "image (1).jpg"
+        candidates.push(`${base}/${s} (${i}).${e}`);
+        // motif avec tiret: "image-01.jpg" et "image-1.jpg"
+        const ii = String(i).padStart(2, '0');
+        candidates.push(`${base}/${s}-${ii}.${e}`);
+        candidates.push(`${base}/${s}-${i}.${e}`);
+      }
     }
   }
   const uniq: string[] = [];
@@ -100,7 +121,7 @@ async function resolveGalleryUrls(slug: string, coverUrl: string, preset?: strin
     const encoded = encodeURI(url);
     if (encoded === coverUrl) continue;
     if (await urlExists(encoded)) uniq.push(encoded);
-    if (uniq.length >= 12) break; // limiter
+    if (uniq.length >= 100) break; // élargir la limite pour le slider
   }
   return uniq;
 }
@@ -109,12 +130,12 @@ export async function loadProducts(): Promise<Product[]> {
   try {
     const res = await fetch('/content.json');
     const data = await res.json();
-    // support des nouveaux champs cover/cover2/arbre dans le JSON
+    // support des nouveaux champs couverture/couverture2 (+ compat cover/cover2) et arbre
     const raw = (data.products as any[]).map((p) => ({
       ...p,
-      image: p.cover ?? p.image ?? '',
-      secondaryCover: p.cover2 ?? undefined,
-      treeImage: p.arbre ?? undefined,
+      image: p.couverture ?? p.cover ?? p.image ?? '',
+      secondaryCover: p['couverture2'] ?? p['couverture-2'] ?? p.cover2 ?? undefined,
+      treeImage: p.arbre ?? p['arbre'] ?? undefined,
     })) as Product[];
     const enhanced = await Promise.all(
       raw.map(async (p) => {

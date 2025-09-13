@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { ChevronDownIcon } from '@heroicons/react/24/solid';
+import classNames from 'classnames';
 
 const items = [
   { q: 'Quels incoterms proposez‑vous ?', a: 'EXW, FOB, CIF et DDP selon destination et volumes.' },
@@ -16,10 +18,26 @@ export function FAQ() {
         <div className="mt-6 divide-y divide-white/10 border border-white/10 rounded-xl overflow-hidden">
           {items.map((it, i) => (
             <div key={it.q}>
-              <button onClick={() => setOpen(open === i ? null : i)} className="w-full text-left px-5 py-4 font-semibold">
-                {it.q}
+              <button
+                onClick={() => setOpen(open === i ? null : i)}
+                className="w-full px-5 py-4 font-semibold flex items-center justify-between gap-4 text-left"
+                aria-expanded={open === i}
+                aria-controls={`faq-panel-${i}`}
+              >
+                <span>{it.q}</span>
+                <ChevronDownIcon
+                  className={classNames(
+                    'h-5 w-5 shrink-0 text-white/60 transition-transform duration-200',
+                    { 'rotate-180': open === i }
+                  )}
+                  aria-hidden="true"
+                />
               </button>
-              {open === i && <p className="px-5 pb-5 text-sm text-white/80">{it.a}</p>}
+              {open === i && (
+                <p id={`faq-panel-${i}`} className="px-5 pb-5 text-sm text-white/80">
+                  {it.a}
+                </p>
+              )}
             </div>
           ))}
         </div>

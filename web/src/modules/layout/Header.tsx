@@ -16,10 +16,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-brand-black/80 backdrop-blur border-b border-white/10">
       <div className="container-section h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-full bg-brand-green" />
+        <Link to="/" className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-brand-green rounded-md">
+          <img src="/favicon.svg" alt="Biosun Trade" className="h-8 w-8" />
           <span className="font-semibold">Biosun Trade</span>
-        </div>
+        </Link>
         <nav className="hidden md:flex gap-6">
           {navItems.map((it) => (
             <Link

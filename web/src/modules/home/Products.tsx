@@ -14,10 +14,16 @@ export function Products() {
         <h2 className="text-2xl md:text-3xl font-bold">Nos produits</h2>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10">
           {items.map((p) => {
-            const src = encodeURI(p.image || p.secondaryCover || (p.gallery && p.gallery[0]) || '');
+            const primary = p.couverture || p.secondaryCover || (p.gallery && p.gallery[0]) || '';
+            const src1 = encodeURI(primary);
+            const src2 = p.secondaryCover ? encodeURI(p.secondaryCover) : null;
             return (
             <Link key={p.name} to={`/produits/${p.slug}`} className="group block rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur hover:shadow-2xl transition-all focus:outline-none focus:ring-2 focus:ring-brand-green">
-              <div className="relative h-80 bg-cover bg-center transform group-hover:scale-105 transition-transform" style={{ backgroundImage: `url("${src}")` }}>
+              <div className="relative h-80 overflow-hidden">
+                <div className="absolute inset-0 bg-cover bg-center transform transition-transform duration-300 group-hover:scale-105" style={{ backgroundImage: `url("${src1}")` }} />
+                {src2 && (
+                  <div className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ backgroundImage: `url("${src2}")` }} />
+                )}
                 {p.treeImage && (
                   <span className="absolute top-3 left-3 px-2 py-1 rounded-md text-[11px] font-medium bg-brand-green text-white border border-white/20 shadow">
                     Mûris sur l’arbre
