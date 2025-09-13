@@ -23,6 +23,12 @@ export function ProductDetailPage() {
           <motion.div initial={{opacity:0, x:-20}} animate={{opacity:1, x:0}} transition={{duration:.5}}>
             <h1 className="text-4xl font-extrabold">{product.name}</h1>
             <p className="mt-4 text-gray-300">{product.description}</p>
+            {product.treeImage && (
+              <div className="mt-5 rounded-2xl overflow-hidden border border-white/10">
+                <div className="aspect-[16/10] bg-cover bg-center" style={{ backgroundImage: `url("${product.treeImage}")` }} />
+                <div className="px-3 py-2 text-xs text-white/80">Cueillis sur l’arbre</div>
+              </div>
+            )}
             <ul className="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
               <li className="p-3 rounded-md bg-white/5 border border-white/10">Calibres export</li>
               <li className="p-3 rounded-md bg-white/5 border border-white/10">Chaîne du froid</li>
@@ -32,16 +38,25 @@ export function ProductDetailPage() {
             <Link to="/contact" className="inline-block mt-6 px-5 py-3 rounded-md bg-brand-green text-white font-medium">Demander une offre</Link>
           </motion.div>
           <motion.div initial={{opacity:0, x:20}} animate={{opacity:1, x:0}} transition={{duration:.5}} className="rounded-2xl overflow-hidden border border-white/10">
-            <div className="aspect-[16/11] bg-cover bg-center" style={{ backgroundImage: `url(${product.image})` }} />
+            <div className="aspect-[16/11] bg-cover bg-center" style={{ backgroundImage: `url("${product.image}")` }} />
           </motion.div>
         </div>
       </section>
       <section className="container-section py-10">
         <h2 className="text-xl font-semibold">Galerie</h2>
         <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="rounded-xl overflow-hidden border border-white/10">
-              <div className="aspect-[4/3] bg-cover bg-center" style={{ backgroundImage: `url(${product.image})` }} />
+          {(() => {
+            const list = [product.secondaryCover, ...(product.gallery ?? [])]
+              .filter((x): x is string => !!x)
+              .filter((src) => src !== product.image && src !== product.treeImage);
+            for (let i = list.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [list[i], list[j]] = [list[j], list[i]];
+            }
+            return list;
+          })().map((src, i) => (
+            <div key={src + i} className="rounded-xl overflow-hidden border border-white/10">
+              <div className="aspect-[4/3] bg-cover bg-center" style={{ backgroundImage: `url("${src}")` }} />
             </div>
           ))}
         </div>

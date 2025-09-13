@@ -1,0 +1,117 @@
+    {
+  "hero": {
+    "headline": "Des fruits exotiques qui ont du goût, mûris sur l’arbre",
+    "subheadline": "Passion, mangue, gingembre, citron vert, papaye, grenade — sélectionnés chez des producteurs de confiance. Fraîcheur express, qualité export et traçabilité."
+  },
+  "about": {
+    "title": "Pourquoi Biosun Trade",
+    "body": "Nous sourçons des fruits exotiques qui ont réellement mûri sur l’arbre, auprès de petits producteurs de confiance. Résultat: plus de goût, plus de nutriments et zéro traitement post‑récolte. Notre équipe pilote la qualité et la logistique pour livrer en quelques jours des produits prêts à consommer ou à transformer.",
+    "bullets": [
+      "Mûris sur l’arbre",
+      "Traçabilité 100%",
+      "Expédition express",
+      "Certifs BIO/GlobalG.A.P."
+    ]
+  },
+  "products": [
+    {
+      "slug": "fruit-de-la-passion",
+      "name": "Fruits de la passion",
+      "description": "Arômes intenses, idéal pour jus et desserts. Disponibilité quasi annuelle.",
+      "cover": "/fruits/passion/cover.jpg",
+      "cover2": "/fruits/passion/cover-2.jpg",
+      "arbre": null,
+      "origins": ["Pérou"],
+      "gallery": [
+        "/fruits/passion/image-01.jpg",
+        "/fruits/passion/image-03.jpg"
+      ]
+    },
+    {
+      "slug": "mangue",
+      "name": "Mangue",
+      "description": "Kent, variété plébiscitée: chair veloutée, arômes pêche/passion.",
+      "cover": "/fruits/mangue/cover.jpg",
+      "cover2": "/fruits/mangue/cover-2.jpg",
+      "arbre": null,
+      "origins": ["Pérou", "Sénégal"],
+      "gallery": [
+        "/fruits/mangue/image-01.jpg",
+        "/fruits/mangue/image-02.jpeg",
+        "/fruits/mangue/image-03.jpg",
+        "/fruits/mangue/image-04.jpeg"
+      ],
+      "longDescription": "La mangue Kent que nous sélectionnons est cueillie au pic de sa saveur chez des producteurs de confiance. Sa chair sans fibre est fondante et libère un jus généreux aux notes de pêche et de fruit de la passion.",
+      "storageTips": [
+        "Laisser mûrir à température ambiante",
+        "Une fois mûre, réfrigérer 3 à 5 jours"
+      ],
+      "keyNutrients": [
+        "Vitamine B9: ~70 µg (≈35% VNR) / 100 g",
+        "Vitamine C: ~25 mg (≈31% VNR) / 100 g",
+        "Provitamine A (β‑carotène): ≈144 µg / 100 g",
+        "Vitamine E: ≈2.0 mg / 100 g"
+      ]
+    },
+    {
+      "slug": "gingembre",
+      "name": "Gingembre",
+      "description": "Racines fraîches, calibre export, forte teneur en huile essentielle.",
+      "cover": "/fruits/gingembre/cover.jpeg",
+      "cover2": "/fruits/gingembre/cover-2.jpg",
+      "arbre": null,
+      "origins": ["Pérou"],
+      "gallery": [
+        "/fruits/gingembre/image-01.jpg",
+        "/fruits/gingembre/image-02.jpeg",
+        "/fruits/gingembre/image-03.jpeg",
+        "/fruits/gingembre/image-04.jpeg"
+      ]
+    },
+    {
+      "slug": "citron-vert",
+      "name": "Citron vert",
+      "description": "Limes acidulées, riche en jus, qualité cocktail et industrie.",
+      "cover": "/fruits/citron-vert/cover.jpg",
+      "cover2": "/fruits/citron-vert/cover-2.jpg",
+      "arbre": null,
+      "origins": ["Pérou"],
+      "gallery": [
+        "/fruits/citron-vert/images-01.jpeg",
+        "/fruits/citron-vert/image-02.jpg",
+        "/fruits/citron-vert/image-03.jpeg"
+      ]
+    },
+    {
+      "slug": "papaye",
+      "name": "Papaye",
+      "description": "Chair orangée, texture fondante, idéale consommation et processing.",
+      "cover": "/fruits/papaye/cover.jpg",
+      "cover2": "/fruits/papaye/cover-2.jpg",
+      "arbre": "/fruits/papaye/arbre.jpg",
+      "gallery": [
+        "/fruits/papaye/arbre-02.jpeg",
+        "/fruits/papaye/image-03.jpg",
+        "/fruits/papaye/image-04.jpg",
+        "/fruits/papaye/image-05.jpeg",
+        "/fruits/papaye/image-06.jpeg"
+      ]
+    },
+    {
+      "slug": "grenade",
+      "name": "Grenade",
+      "description": "Arilles croquants riches en antioxydants, multiple calibres.",
+      "cover": "/fruits/grenade/cover.jpg",
+      "cover2": "/fruits/grenade/cover-2.jpg",
+      "arbre": "/fruits/grenade/arbre.jpeg",
+      "gallery": [
+        "/fruits/grenade/image-01.jpeg",
+        "/fruits/grenade/image-02.jpg",
+        "/fruits/grenade/image-03.jpg",
+        "/fruits/grenade/image-04.jpg"
+      ]
+    }
+  ]
+}
+
+

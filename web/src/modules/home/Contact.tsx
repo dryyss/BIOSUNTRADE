@@ -1,19 +1,36 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
+import { Modal } from '../ui/Modal';
 import { FloatingInput, FloatingTextarea } from '../ui/FloatingField';
 
 export function Contact() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [open, setOpen] = useState(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('sending');
     try {
-      // Placeholder: intégration EmailJS ou endpoint plus tard
-      await new Promise((r) => setTimeout(r, 800));
+      const form = e.currentTarget as HTMLFormElement;
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS non configuré');
+      }
+      const formData = {
+        from_name: (form.elements.namedItem('name') as HTMLInputElement)?.value,
+        from_email: (form.elements.namedItem('email') as HTMLInputElement)?.value,
+        phone: (form.elements.namedItem('phone') as HTMLInputElement)?.value,
+        message: (form.elements.namedItem('message') as HTMLTextAreaElement)?.value,
+      };
+      await emailjs.send(serviceId, templateId, formData, { publicKey });
       setStatus('sent');
+      setOpen(true);
       (e.currentTarget as HTMLFormElement).reset();
     } catch (_) {
       setStatus('error');
+      setOpen(true);
     }
   };
 
@@ -43,11 +60,16 @@ export function Contact() {
             <button disabled={status==='sending'} className="mt-2 px-5 py-3 rounded-md bg-brand-green text-white font-medium">
               {status === 'sending' ? 'Envoi…' : 'Envoyer'}
             </button>
-            {status === 'sent' && <p className="text-green-600">Message envoyé. Merci !</p>}
-            {status === 'error' && <p className="text-red-600">Erreur, réessayez plus tard.</p>}
           </div>
         </form>
       </div>
+      <Modal open={open} onClose={()=>setOpen(false)} title={status==='sent' ? 'Message envoyé' : 'Erreur'}>
+        {status==='sent' ? (
+          <p>Merci, votre demande a bien été envoyée. Nous revenons vers vous très vite.</p>
+        ) : (
+          <p>Un problème est survenu. Veuillez réessayer plus tard.</p>
+        )}
+      </Modal>
     </section>
   );
 }

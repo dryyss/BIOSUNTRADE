@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Modal } from '../ui/Modal';
 import { FiMail, FiPhone, FiMapPin, FiFacebook, FiInstagram, FiLinkedin } from 'react-icons/fi';
 
 export function Footer() {
+  const [open, setOpen] = useState(false);
   return (
     <footer className="mt-16 bg-brand-black border-t border-white/10 text-gray-300">
       <div className="container-section py-12 grid md:grid-cols-4 gap-10">
@@ -38,7 +41,7 @@ export function Footer() {
         <div>
           <h4 className="font-semibold text-white">Newsletter</h4>
           <p className="mt-2 text-sm">Recevez nos disponibilités et nouveautés.</p>
-          <form onSubmit={(e)=>{e.preventDefault(); alert('Merci ! Nous vous tiendrons informé.');}} className="mt-4 flex gap-2">
+          <form onSubmit={(e)=>{e.preventDefault(); setOpen(true);}} className="mt-4 flex gap-2">
             <input type="email" required placeholder="Votre e‑mail" className="flex-1 px-4 py-3 rounded-md border border-white/20 bg-transparent" />
             <button className="px-4 py-3 rounded-md bg-brand-green text-white font-medium">S’abonner</button>
           </form>
@@ -56,6 +59,9 @@ export function Footer() {
           <p className="text-white/60">Made with care — Bruxelles, Belgique</p>
         </div>
       </div>
+      <Modal open={open} onClose={()=>setOpen(false)} title="Inscription confirmée">
+        Merci ! Vous recevrez nos disponibilités et nouveautés très bientôt.
+      </Modal>
     </footer>
   );
 }

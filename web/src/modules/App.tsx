@@ -1,5 +1,6 @@
 import { Header } from './layout/Header';
 import { Footer } from './layout/Footer';
+import { FloatingWhatsApp } from './ui/FloatingWhatsApp';
 import { Outlet } from 'react-router-dom';
 import { Hero } from './home/Hero';
 import { About } from './home/About';
@@ -15,6 +16,7 @@ export function App() {
         <Outlet />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }

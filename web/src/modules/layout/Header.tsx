@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Bars3Icon } from '@heroicons/react/24/outline';
 import { FiMenu } from 'react-icons/fi';
 
 const navItems = [
@@ -30,8 +31,8 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <button className="md:hidden" onClick={() => setOpen((v) => !v)}>
-          <FiMenu size={22} />
+        <button className="md:hidden" onClick={() => setOpen((v) => !v)} aria-label="Menu">
+          <Bars3Icon className="h-6 w-6" />
         </button>
       </div>
       {open && (

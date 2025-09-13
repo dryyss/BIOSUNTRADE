@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: light dark;
-}
+:root { color-scheme: light dark; }
+html { scroll-behavior: smooth; }
 
 body { @apply bg-brand-black text-gray-100; }
 

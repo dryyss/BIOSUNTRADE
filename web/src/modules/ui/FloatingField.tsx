@@ -28,10 +28,10 @@ export function FloatingInput({ name, label, type = 'text', required, className 
         className="peer w-full px-4 py-3 rounded-md border border-white/20 bg-transparent text-white placeholder-transparent focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green transition"
       />
       <label
-        className="pointer-events-none absolute left-3 top-3 px-1 text-white/60 bg-transparent transition-all duration-200
-        peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/60
-        peer-focus:-top-3 peer-focus:text-xs peer-focus:text-brand-yellow
-        peer-not-placeholder-shown:-top-3 peer-not-placeholder-shown:text-xs"
+        className="pointer-events-none absolute left-3 px-1 text-white/60 transition-all duration-200
+        peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-white/60
+        peer-focus:-top-3 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-brand-yellow peer-focus:bg-brand-black
+        peer-not-placeholder-shown:-top-3 peer-not-placeholder-shown:translate-y-0 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:bg-brand-black"
       >
         {label}
       </label>
@@ -70,10 +70,10 @@ export function FloatingTextarea({ name, label, required, rows = 4, className }:
         className="peer w-full px-4 py-3 rounded-md border border-white/20 bg-transparent text-white placeholder-transparent focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green transition"
       />
       <label
-        className="pointer-events-none absolute left-3 top-3 px-1 text-white/60 transition-all duration-200
+        className="pointer-events-none absolute left-3 px-1 text-white/60 transition-all duration-200
         peer-placeholder-shown:top-3 peer-placeholder-shown:text-white/60
-        peer-focus:-top-3 peer-focus:text-xs peer-focus:text-brand-yellow
-        peer-not-placeholder-shown:-top-3 peer-not-placeholder-shown:text-xs"
+        peer-focus:-top-3 peer-focus:text-xs peer-focus:text-brand-yellow peer-focus:bg-brand-black
+        peer-not-placeholder-shown:-top-3 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:bg-brand-black"
       >
         {label}
       </label>
