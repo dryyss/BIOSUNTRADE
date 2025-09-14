@@ -7,7 +7,7 @@ import { LazyBg } from '../ui/LazyBg';
 export function Products() {
   const [items, setItems] = useState<Product[]>([]);
   useEffect(() => {
-    loadProducts().then(setItems);
+    loadProducts('minimal').then(setItems);
   }, []);
   return (
     <section id="products" className="bg-gray-50 dark:bg-white/5 py-16">

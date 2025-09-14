@@ -18,7 +18,7 @@ import { Product, loadProducts } from '../../data/products';
 
 export function HomePage() {
   const [items, setItems] = useState<Product[]>([]);
-  useEffect(() => { loadProducts().then(setItems); }, []);
+  useEffect(() => { loadProducts('minimal').then(setItems); }, []);
   const origin = typeof window !== 'undefined' ? window.location.origin : '';
   return (
     <>

@@ -39,7 +39,14 @@ export function ParallaxFruit({ image, title, text, text2, reverse, eager }: Par
       <div ref={ref} className={`container-section grid md:grid-cols-2 gap-10 items-center`} style={{ opacity: visible }}>
         <div className={`${reverse ? 'md:order-2' : ''} rounded-3xl overflow-hidden border border-white/10 shadow-xl`} style={{ transform: 'translateY(var(--parallax))' }}>
           {eager ? (
-            <div className="aspect-[4/3] bg-cover bg-center" style={{ backgroundImage: `url(\"${encodeURI(image)}\")` }} />
+            <img
+              src={encodeURI(image)}
+              alt={title}
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              className="aspect-[4/3] w-full h-auto object-cover"
+            />
           ) : (
             <LazyBg src={image} className="aspect-[4/3] bg-cover bg-center" />
           )}

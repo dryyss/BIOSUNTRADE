@@ -6,7 +6,7 @@ import { LazyBg } from '../ui/LazyBg';
 export function Gallery() {
   const [items, setItems] = useState<Array<{ src: string; slug: string }>>([]);
   useEffect(() => {
-    loadProducts().then((list: Product[]) => {
+    loadProducts('minimal').then((list: Product[]) => {
       // uniquement les cover 2
       const covers2 = list
         .filter((p) => !!p.secondaryCover)

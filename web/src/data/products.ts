@@ -19,6 +19,7 @@ export type Product = {
 };
 
 export let PRODUCTS: Product[] = [];
+let PRODUCTS_MIN: Product[] = [];
 
 async function urlExists(url: string): Promise<boolean> {
   try {
@@ -129,7 +130,7 @@ async function resolveGalleryUrls(slug: string, coverUrl: string, preset?: strin
   return uniq;
 }
 
-export async function loadProducts(): Promise<Product[]> {
+export async function loadProducts(mode: 'full' | 'minimal' = 'full'): Promise<Product[]> {
   try {
     const res = await fetch('/content.json');
     const data = await res.json();
@@ -142,21 +143,33 @@ export async function loadProducts(): Promise<Product[]> {
       secondaryCover: p['couverture2'] ?? p['couverture-2'] ?? p.cover2 ?? undefined,
       treeImage: p.arbre ?? p['arbre'] ?? undefined,
     })) as Product[];
-    const enhanced = await Promise.all(
-      raw.map(async (p) => {
-        const detectedSecondary = p.secondaryCover ?? (await resolveSecondaryCoverUrl(p.slug));
-        const image = await resolveCoverUrl(p.slug, p.image);
-        const gallery = await resolveGalleryUrls(p.slug, image, p.gallery);
-        const treeImage = p.treeImage ?? (gallery ?? []).find((g) => decodeURI(g).toLowerCase().includes('arbre'));
-        // Fallback si pas de cover détecté: cover2 puis première image de galerie
-        const finalImage = image || detectedSecondary || (gallery && gallery[0]) || '';
-        return { ...p, image: finalImage, secondaryCover: detectedSecondary, treeImage, gallery } as Product;
-      })
-    );
-    PRODUCTS = enhanced;
-    return PRODUCTS;
+    if (mode === 'minimal') {
+      const minimal = raw.map((p) => {
+        const image = p.image;
+        const secondaryCover = p.secondaryCover;
+        const gallery = (p.gallery ?? []).map((u) => encodeURI(u));
+        const finalImage = image || secondaryCover || gallery[0] || '';
+        return { ...p, image: finalImage, secondaryCover, gallery } as Product;
+      });
+      PRODUCTS = minimal;
+      PRODUCTS_MIN = minimal;
+      return minimal;
+    } else {
+      const enhanced = await Promise.all(
+        raw.map(async (p) => {
+          const detectedSecondary = p.secondaryCover ?? (await resolveSecondaryCoverUrl(p.slug));
+          const image = await resolveCoverUrl(p.slug, p.image);
+          const gallery = await resolveGalleryUrls(p.slug, image, p.gallery);
+          const treeImage = p.treeImage ?? (gallery ?? []).find((g) => decodeURI(g).toLowerCase().includes('arbre'));
+          const finalImage = image || detectedSecondary || (gallery && gallery[0]) || '';
+          return { ...p, image: finalImage, secondaryCover: detectedSecondary, treeImage, gallery } as Product;
+        })
+      );
+      PRODUCTS = enhanced;
+      return enhanced;
+    }
   } catch {
-    return PRODUCTS; // fallback vide si offline
+    return mode === 'minimal' ? (PRODUCTS_MIN.length ? PRODUCTS_MIN : PRODUCTS) : PRODUCTS;
   }
 }
 

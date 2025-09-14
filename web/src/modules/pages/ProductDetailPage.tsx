@@ -61,22 +61,24 @@ export function ProductDetailPage() {
     <>
       <Helmet>
         {(() => { const origin = typeof window !== 'undefined' ? window.location.origin : ''; return (
-        <title>{product.name} — Biosun Trade</title>
-        <meta name="description" content={product.description} />
-        <link rel="canonical" href={`${origin}/produits/${product.slug}`} />
-        <meta property="og:type" content="product" />
-        <meta property="og:title" content={`${product.name} — Biosun Trade`} />
-        <meta property="og:description" content={product.description} />
-        <meta property="og:image" content={(product.couverture || product.secondaryCover || '')} />
-        <meta property="og:url" content={`${origin}/produits/${product.slug}`} />
-        <script type="application/ld+json">{JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: product.name,
-          image: [product.couverture || product.secondaryCover, ...(product.gallery || [])].filter(Boolean),
-          description: product.description,
-          brand: { '@type': 'Brand', name: 'Biosun Trade' },
-        })}</script>
+          <>
+            <title>{product.name} — Biosun Trade</title>
+            <meta name="description" content={product.description} />
+            <link rel="canonical" href={`${origin}/produits/${product.slug}`} />
+            <meta property="og:type" content="product" />
+            <meta property="og:title" content={`${product.name} — Biosun Trade`} />
+            <meta property="og:description" content={product.description} />
+            <meta property="og:image" content={(product.couverture || product.secondaryCover || '')} />
+            <meta property="og:url" content={`${origin}/produits/${product.slug}`} />
+            <script type="application/ld+json">{JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Product',
+              name: product.name,
+              image: [product.couverture || product.secondaryCover, ...(product.gallery || [])].filter(Boolean),
+              description: product.description,
+              brand: { '@type': 'Brand', name: 'Biosun Trade' },
+            })}</script>
+          </>
         );})()}
       </Helmet>
       <section className="relative overflow-hidden">

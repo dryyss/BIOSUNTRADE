@@ -4,7 +4,7 @@ import { Product, loadProducts } from '../../data/products';
 
 export function About() {
   const [items, setItems] = useState<Product[]>([]);
-  useEffect(() => { loadProducts().then(setItems); }, []);
+  useEffect(() => { loadProducts('minimal').then(setItems); }, []);
   const markers = useMemo(() => {
     // Mapping très simple pays -> coordonnées (à étendre au besoin)
     const countryToLatLon: Record<string, { lat: number; lon: number }> = {
