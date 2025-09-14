@@ -10,7 +10,7 @@ export function Footer() {
       <div className="container-section py-16 grid md:grid-cols-4 gap-12">
         <div>
           <Link to="/" className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-brand-green rounded-md">
-            <img src="/logo2.png" alt="Biosun Trade logo" className="h-16 w-auto" />
+            <img src="/logo.jpg" alt="Biosun Trade logo" className="h-16 w-auto" />
             <span className="font-semibold text-white text-2xl">Biosun Trade</span>
           </Link>
           <p className="mt-4 text-lg text-white/80">Fruits exotiques de qualité, traçabilité et logistique maîtrisée.</p>
