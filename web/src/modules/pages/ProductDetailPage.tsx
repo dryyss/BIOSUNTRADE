@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { Product, loadProducts } from '../../data/products';
 import { motion } from 'framer-motion';
+import { MapPinIcon } from '@heroicons/react/24/outline';
 import { Button } from '../ui/Button';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -87,6 +88,15 @@ export function ProductDetailPage() {
           <motion.div initial={{opacity:0, x:-20}} animate={{opacity:1, x:0}} transition={{duration:.5}}>
             <h1 className="text-4xl font-extrabold">{product.name}</h1>
             <p className="mt-4 text-gray-300">{product.description}</p>
+            {product.origins && product.origins.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-2 text-sm">
+                {product.origins.map((o) => (
+                  <span key={o} className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-brand-green/20 text-brand-yellow border border-brand-green/30">
+                    <MapPinIcon className="h-4 w-4" /> {o}
+                  </span>
+                ))}
+              </div>
+            )}
             {product.treeImage && (
               <div className="mt-5 rounded-2xl overflow-hidden border border-white/10">
                 <div className="aspect-[16/10] bg-cover bg-center" style={{ backgroundImage: `url("${product.treeImage}")` }} />
