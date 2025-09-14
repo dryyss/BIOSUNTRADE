@@ -29,7 +29,7 @@ export function HomePage() {
       {items.map((p, i) => (
         <ParallaxFruit
           key={p.slug}
-          image={p.couverture}
+          image={p.couverture ?? p.image}
           title={p.name}
           text={p.description}
           text2={p.longDescription}

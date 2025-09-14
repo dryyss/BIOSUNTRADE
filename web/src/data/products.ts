@@ -3,6 +3,9 @@ export type Product = {
   name: string;
   description: string;
   image: string; // chemin depuis /public (pour compat)
+  // alias issus de content.json, utiles pour certains écrans
+  couverture?: string;
+  ['couverture-2']?: string;
   // cover secondaire (ex: "cover 2") à afficher en tête de galerie
   secondaryCover?: string;
   // photo sur l'arbre à afficher dans la description
@@ -133,6 +136,8 @@ export async function loadProducts(): Promise<Product[]> {
     // support des nouveaux champs couverture/couverture2 (+ compat cover/cover2) et arbre
     const raw = (data.products as any[]).map((p) => ({
       ...p,
+      // on conserve les champs bruts (couverture, couverture-2) pour certains écrans,
+      // mais on normalise aussi vers image/secondaryCover
       image: p.couverture ?? p.cover ?? p.image ?? '',
       secondaryCover: p['couverture2'] ?? p['couverture-2'] ?? p.cover2 ?? undefined,
       treeImage: p.arbre ?? p['arbre'] ?? undefined,

@@ -27,7 +27,7 @@ export function About() {
   }, [items]);
   return (
     <section id="about" className="container-section py-24 lg:py-28 min-h-[70vh]">
-      <div className="grid md:grid-cols-2 gap-8 items-center">
+      <div className="grid md:grid-cols-2 gap-8 items-center overflow-visible">
         <div>
           <h2 className="text-2xl md:text-3xl font-bold">Pourquoi Biosun Trade</h2>
           <p className="mt-4 text-gray-300">
@@ -43,7 +43,19 @@ export function About() {
             <li className="p-3 rounded-md bg-white/5 border border-white/10">Certifs BIO/GlobalG.A.P.</li>
           </ul>
         </div>
-        <DotGlobe className="aspect-square w-full h-auto" dotColor="#22D3EE" continentColor="#FDE047" backgroundColor="transparent" density={64} speed={0.28} showContinents markers={markers} sizeFactor={0.48} />
+        <div className="relative overflow-visible">
+          <DotGlobe
+            className="aspect-square w-[140%] max-w-none transform translate-x-1/4"
+            dotColor="#9aa3b2"
+            continentColor="#9aa3b2"
+            backgroundColor="transparent"
+            density={72}
+            speed={0.22}
+            showContinents
+            markers={[]}
+            sizeFactor={0.75}
+          />
+        </div>
       </div>
     </section>
   );
