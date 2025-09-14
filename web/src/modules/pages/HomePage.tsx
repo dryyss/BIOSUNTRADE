@@ -8,6 +8,7 @@ import { Features } from '../home/Features';
 import { Gallery } from '../home/Gallery';
 import { GalleryIntro } from '../home/GalleryIntro';
 import { Stats } from '../home/Stats';
+import { Newsletter } from '../home/Newsletter';
 import { Carousel } from '../home/Carousel';
 import { Availability } from '../home/Availability';
 import { Partners } from '../home/Partners';
@@ -39,6 +40,7 @@ export function HomePage() {
       ))}
       <GalleryIntro />
       <Gallery />
+      <Newsletter />
       <Stats />
       <Availability />
       {/* <Partners /> */}

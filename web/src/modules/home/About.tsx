@@ -45,15 +45,17 @@ export function About() {
         </div>
         <div className="relative overflow-visible">
           <DotGlobe
-            className="aspect-square w-[140%] max-w-none transform translate-x-1/4"
-            dotColor="#9aa3b2"
+            className="aspect-square w-full max-w-[520px] mx-auto"
+            dotColor="rgba(255,255,255,0.18)" 
             continentColor="#9aa3b2"
             backgroundColor="transparent"
-            density={72}
+            density={60}
             speed={0.22}
             showContinents
+            hideWaterDots
+            oceanColor="rgba(2, 132, 199, 0.35)"
             markers={[]}
-            sizeFactor={0.75}
+            sizeFactor={0.5}
           />
         </div>
       </div>

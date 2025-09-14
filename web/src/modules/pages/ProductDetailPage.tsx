@@ -78,7 +78,7 @@ export function ProductDetailPage() {
             <Link to="/contact" className="inline-block mt-6 px-5 py-3 rounded-md bg-brand-green text-white font-medium">Demander une offre</Link>
           </motion.div>
           <motion.div initial={{opacity:0, x:20}} animate={{opacity:1, x:0}} transition={{duration:.5}} className="rounded-2xl overflow-hidden border border-white/10">
-            <div className="aspect-[16/11] bg-cover bg-center" style={{ backgroundImage: `url("${encodeURI(product.couverture || product.secondaryCover || '')}")` }} />
+            <div className="aspect-[16/11] bg-cover bg-center" style={{ backgroundImage: `url("${encodeURI(product.image || product.secondaryCover || '')}")` }} />
           </motion.div>
         </div>
       </section>
@@ -88,7 +88,7 @@ export function ProductDetailPage() {
           {(() => {
             const list = [product.secondaryCover, ...(product.gallery ?? [])]
               .filter((x): x is string => !!x)
-              .filter((src) => src !== product.couverture && src !== product.treeImage);
+              .filter((src) => src !== product.image && src !== product.treeImage);
             for (let i = list.length - 1; i > 0; i--) {
               const j = Math.floor(Math.random() * (i + 1));
               [list[i], list[j]] = [list[j], list[i]];

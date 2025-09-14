@@ -12,9 +12,11 @@ type DotGlobeProps = {
   landThreshold?: number; // luminosité max pour considérer "terre"
   markers?: { lat: number; lon: number; label?: string }[];
   sizeFactor?: number; // fraction de la plus petite dimension
+  hideWaterDots?: boolean; // n'afficher que les points de terre
+  oceanColor?: string; // couleur des océans (sphère de fond)
 };
 
-export function DotGlobe({ className, dotColor = '#7CFC00', backgroundColor = 'transparent', density = 40, speed = 0.3, showContinents = true, continentColor = '#FDE047', landMaskUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1024px-World_map_-_low_resolution.svg.png', landThreshold = 200, markers = [], sizeFactor = 0.5 }: DotGlobeProps) {
+export function DotGlobe({ className, dotColor = '#7CFC00', backgroundColor = 'transparent', density = 40, speed = 0.3, showContinents = true, continentColor = '#FDE047', landMaskUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1024px-World_map_-_low_resolution.svg.png', landThreshold = 200, markers = [], sizeFactor = 0.5, hideWaterDots = false, oceanColor }: DotGlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animRef = useRef<number | null>(null);
 
@@ -40,6 +42,7 @@ export function DotGlobe({ className, dotColor = '#7CFC00', backgroundColor = 't
 
     const radius = () => Math.min(width, height) * sizeFactor;
     let t = 0;
+    let lastNow: number | null = null;
 
     const points: { lat: number; lon: number }[] = [];
     const latLines = Math.max(10, density);
@@ -143,7 +146,7 @@ export function DotGlobe({ className, dotColor = '#7CFC00', backgroundColor = 't
       return { x: width / 2 + x2, y: height / 2 + y2, front };
     }
 
-    const draw = () => {
+    const draw = (now?: number) => {
       // reset
       ctx.clearRect(0, 0, width, height);
       if (backgroundColor && backgroundColor !== 'transparent') {
@@ -162,8 +165,10 @@ export function DotGlobe({ className, dotColor = '#7CFC00', backgroundColor = 't
         height / 2,
         r
       );
-      grad.addColorStop(0, 'rgba(14, 165, 233, 0.35)');
-      grad.addColorStop(1, 'rgba(2, 6, 23, 0.9)');
+      const topOcean = oceanColor ?? 'rgba(14, 165, 233, 0.35)';
+      const edgeOcean = oceanColor ? oceanColor : 'rgba(2, 6, 23, 0.9)';
+      grad.addColorStop(0, topOcean);
+      grad.addColorStop(1, edgeOcean);
       ctx.beginPath();
       ctx.arc(width / 2, height / 2, r, 0, Math.PI * 2);
       ctx.fillStyle = grad;
@@ -177,6 +182,7 @@ export function DotGlobe({ className, dotColor = '#7CFC00', backgroundColor = 't
       for (const p of points) {
         const { x, y, front } = project(p.lat, p.lon, r);
         const land = showContinents ? isLand(p.lat, p.lon) : false;
+        if (hideWaterDots && !land) continue; // masquer les points d'océan si demandé
         ctx.beginPath();
         const color = land ? continentColor : dotColor;
         const alphaBack = '44';
@@ -200,16 +206,23 @@ export function DotGlobe({ className, dotColor = '#7CFC00', backgroundColor = 't
         ctx.fill();
         ctx.stroke();
       }
-      t += speed * 0.016;
+      if (typeof now === 'number') {
+        if (lastNow == null) lastNow = now;
+        const dt = Math.min(0.05, Math.max(0, (now - lastNow) / 1000));
+        lastNow = now;
+        t += speed * dt;
+      } else {
+        t += speed * 0.016;
+      }
       animRef.current = requestAnimationFrame(draw);
     };
 
-    draw();
+    animRef.current = requestAnimationFrame(draw);
     return () => {
       if (animRef.current) cancelAnimationFrame(animRef.current);
       window.removeEventListener('resize', onResize);
     };
-  }, [dotColor, backgroundColor, density, speed, sizeFactor]);
+  }, [dotColor, backgroundColor, density, speed, sizeFactor, hideWaterDots, oceanColor]);
 
   return (
     <canvas ref={canvasRef} className={className} />

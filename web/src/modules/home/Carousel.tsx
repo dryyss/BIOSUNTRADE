@@ -10,7 +10,7 @@ export function Carousel() {
     loadProducts().then((list: Product[]) => {
       const all: string[] = [];
       for (const p of list) {
-        const parts = [p.secondaryCover, p.image, p.treeImage, ...(p.gallery ?? [])]
+        const parts = [p.secondaryCover, p.couverture, p.treeImage, ...(p.gallery ?? [])]
           .filter((u): u is string => !!u)
           .map((u) => encodeURI(u));
         all.push(...parts);
