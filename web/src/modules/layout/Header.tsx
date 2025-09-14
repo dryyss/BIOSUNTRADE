@@ -15,24 +15,24 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-brand-black/80 backdrop-blur border-b border-white/10">
-      <div className="container-section h-16 flex items-center justify-between">
+      <div className="container-section h-20 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-brand-green rounded-md">
-          <img src="/favicon.svg" alt="Biosun Trade" className="h-8 w-8" />
-          <span className="font-semibold">Biosun Trade</span>
+          <img src="/logo.jpg" alt="Biosun Trade logo" className="h-10 w-auto" />
+          <span className="font-semibold text-lg md:text-xl">Biosun Trade</span>
         </Link>
-        <nav className="hidden md:flex gap-6">
+        <nav className="hidden md:flex gap-8">
           {navItems.map((it) => (
             <Link
               key={it.to}
               to={it.to}
-              className={`text-sm font-medium hover:text-brand-green ${location.pathname === it.to ? 'text-brand-green' : ''}`}
+              className={`text-base font-semibold hover:text-brand-green ${location.pathname === it.to ? 'text-brand-green' : ''}`}
             >
               {it.label}
             </Link>
           ))}
         </nav>
         <button className="md:hidden" onClick={() => setOpen((v) => !v)} aria-label="Menu">
-          <Bars3Icon className="h-6 w-6" />
+          <Bars3Icon className="h-7 w-7" />
         </button>
       </div>
       {open && (
