@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node ./scripts/generate-sitemap.mjs",
     "preview": "vite preview --port 4173",
-    "images:normalize": "node ./scripts/normalize-images.mjs"
+    "images:normalize": "node ./scripts/normalize-images.mjs",
+    "icons:generate": "node ./scripts/generate-favicons.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -28,6 +29,7 @@
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
+    "jimp": "^0.22.12",
     "tailwindcss": "^3.4.12",
     "typescript": "^5.5.4",
     "vite": "^5.4.2"

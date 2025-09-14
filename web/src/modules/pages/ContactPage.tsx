@@ -1,10 +1,21 @@
 import { Contact } from '../home/Contact';
 import { motion } from 'framer-motion';
 import { Button } from '../ui/Button';
+import { Helmet } from 'react-helmet-async';
 
 export function ContactPage() {
+  const origin = typeof window !== 'undefined' ? window.location.origin : '';
   return (
     <>
+      <Helmet>
+        <title>Contact — Biosun Trade</title>
+        <meta name="description" content="Contactez Biosun Trade pour vos besoins en fruits exotiques: disponibilités, calibres, packaging et délais." />
+        <link rel="canonical" href={`${origin}/contact`} />
+        <meta property="og:url" content={`${origin}/contact`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Contact — Biosun Trade" />
+        <meta property="og:description" content="Parlons de vos besoins en fruits exotiques." />
+      </Helmet>
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 opacity-20" style={{background: 'radial-gradient(circle at 20% 20%, #66BB2E22, transparent 40%), radial-gradient(circle at 80% 30%, #F5A62322, transparent 40%)'}} />
         <div className="container-section py-20 text-center relative">

@@ -110,6 +110,35 @@
         "/fruits/grenade/image-03.jpg",
         "/fruits/grenade/image-04.jpg"
       ]
+    },
+    {
+      "slug": "avocat",
+      "name": "Avocat",
+      "description": "Chair onctueuse, variété Hass — idéal frais et transformation.",
+      "couverture": "/fruits/avocat/couverture.jpg",
+      "cover2": "/fruits/avocat/cover-2.jpg",
+      "arbre": "/fruits/avocat/arbre.jpg",
+      "origins": ["Pérou", "Colombie"],
+      "gallery": [
+        "/fruits/avocat/image-01.jpg",
+        "/fruits/avocat/image-02.jpg",
+        "/fruits/avocat/image-03.jpg",
+        "/fruits/avocat/image-04.jpg"
+      ]
+    },
+    {
+      "slug": "ananas",
+      "name": "Ananas",
+      "description": "Parfum intense et acidulé, calibre export, récolte à maturité.",
+      "couverture": "/fruits/ananas/couverture.jpg",
+      "cover2": "/fruits/ananas/cover-2.jpg",
+      "arbre": "/fruits/ananas/arbre.jpg",
+      "origins": ["République dominicaine", "Guadeloupe"],
+      "gallery": [
+        "/fruits/ananas/image-01.jpg",
+        "/fruits/ananas/image-02.jpg",
+        "/fruits/ananas/image-03.jpg"
+      ]
     }
   ]
 }

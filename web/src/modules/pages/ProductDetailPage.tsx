@@ -3,6 +3,8 @@ import { Product, loadProducts } from '../../data/products';
 import { motion } from 'framer-motion';
 import { Button } from '../ui/Button';
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { LazyBg } from '../ui/LazyBg';
 
 export function ProductDetailPage() {
   const { slug } = useParams();
@@ -57,6 +59,26 @@ export function ProductDetailPage() {
 
   return (
     <>
+      <Helmet>
+        {(() => { const origin = typeof window !== 'undefined' ? window.location.origin : ''; return (
+        <title>{product.name} — Biosun Trade</title>
+        <meta name="description" content={product.description} />
+        <link rel="canonical" href={`${origin}/produits/${product.slug}`} />
+        <meta property="og:type" content="product" />
+        <meta property="og:title" content={`${product.name} — Biosun Trade`} />
+        <meta property="og:description" content={product.description} />
+        <meta property="og:image" content={(product.couverture || product.secondaryCover || '')} />
+        <meta property="og:url" content={`${origin}/produits/${product.slug}`} />
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: product.name,
+          image: [product.couverture || product.secondaryCover, ...(product.gallery || [])].filter(Boolean),
+          description: product.description,
+          brand: { '@type': 'Brand', name: 'Biosun Trade' },
+        })}</script>
+        );})()}
+      </Helmet>
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 opacity-20" style={{background: 'radial-gradient(circle at 10% 10%, #66BB2E22, transparent 40%), radial-gradient(circle at 90% 20%, #F5A62322, transparent 40%)'}} />
         <div className="container-section py-14 relative grid md:grid-cols-2 gap-8 items-center">
@@ -78,7 +100,7 @@ export function ProductDetailPage() {
             <Link to="/contact" className="inline-block mt-6 px-5 py-3 rounded-md bg-brand-green text-white font-medium">Demander une offre</Link>
           </motion.div>
           <motion.div initial={{opacity:0, x:20}} animate={{opacity:1, x:0}} transition={{duration:.5}} className="rounded-2xl overflow-hidden border border-white/10">
-            <div className="aspect-[16/11] bg-cover bg-center" style={{ backgroundImage: `url("${encodeURI(product.image || product.secondaryCover || '')}")` }} />
+            <LazyBg src={product.couverture || product.image || product.secondaryCover || ''} className="aspect-[16/11] bg-cover bg-center" />
           </motion.div>
         </div>
       </section>
@@ -88,7 +110,7 @@ export function ProductDetailPage() {
           {(() => {
             const list = [product.secondaryCover, ...(product.gallery ?? [])]
               .filter((x): x is string => !!x)
-              .filter((src) => src !== product.image && src !== product.treeImage);
+              .filter((src) => src !== product.couverture && src !== product.treeImage);
             for (let i = list.length - 1; i > 0; i--) {
               const j = Math.floor(Math.random() * (i + 1));
               [list[i], list[j]] = [list[j], list[i]];
@@ -96,7 +118,7 @@ export function ProductDetailPage() {
             return list;
           })().map((src, i) => (
             <div key={src + i} className="rounded-xl overflow-hidden border border-white/10">
-              <div className="aspect-[4/3] bg-cover bg-center" style={{ backgroundImage: `url("${src}")` }} />
+              <LazyBg src={src} className="aspect-[4/3] bg-cover bg-center" />
             </div>
           ))}
         </div>
@@ -109,3 +131,4 @@ export function ProductDetailPage() {
 }
 
 
+  
