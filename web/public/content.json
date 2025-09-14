@@ -21,7 +21,7 @@
       "couverture": "/fruits/passion/couverture.jpg",
       "cover2": "/fruits/passion/cover-2.jpg",
       "arbre": null,
-      "origins": ["Pérou"],
+      "origins": ["Pérou", "Colombie", "République dominicaine"],
       "gallery": [
         "/fruits/passion/image-01.jpg",
         "/fruits/passion/image-03.jpg"
@@ -89,6 +89,7 @@
       "couverture": "/fruits/papaye/couverture.jpg",
       "cover2": "/fruits/papaye/cover-2.jpg",
       "arbre": "/fruits/papaye/arbre.jpg",
+      "origins": ["Pérou", "Colombie", "République dominicaine"],
       "gallery": [
         "/fruits/papaye/arbre-02.jpeg",
         "/fruits/papaye/image-03.jpg",
@@ -104,6 +105,7 @@
       "couverture": "/fruits/grenade/couverture.jpg",
       "cover2": "/fruits/grenade/cover-2.jpg",
       "arbre": "/fruits/grenade/arbre.jpeg",
+      "origins": ["Pérou", "Colombie", "République dominicaine"],
       "gallery": [
         "/fruits/grenade/image-01.jpeg",
         "/fruits/grenade/image-02.jpg",

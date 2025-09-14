@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { LazyBg } from '../ui/LazyBg';
 
 type ParallaxFruitProps = {
@@ -6,11 +7,12 @@ type ParallaxFruitProps = {
   title: string;
   text: string;
   text2?: string;
+  to?: string;
   reverse?: boolean;
   eager?: boolean;
 };
 
-export function ParallaxFruit({ image, title, text, text2, reverse, eager }: ParallaxFruitProps) {
+export function ParallaxFruit({ image, title, text, text2, reverse, eager, to }: ParallaxFruitProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(1);
 
@@ -37,24 +39,50 @@ export function ParallaxFruit({ image, title, text, text2, reverse, eager }: Par
   return (
     <section className="py-20">
       <div ref={ref} className={`container-section grid md:grid-cols-2 gap-10 items-center`} style={{ opacity: visible }}>
-        <div className={`${reverse ? 'md:order-2' : ''} rounded-3xl overflow-hidden border border-white/10 shadow-xl`} style={{ transform: 'translateY(var(--parallax))' }}>
-          {eager ? (
-            <img
-              src={encodeURI(image)}
-              alt={title}
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-              className="aspect-[4/3] w-full h-auto object-cover"
-            />
-          ) : (
-            <LazyBg src={image} className="aspect-[4/3] bg-cover bg-center" />
-          )}
-        </div>
+        {to ? (
+          <Link to={to} className={`${reverse ? 'md:order-2' : ''} rounded-3xl overflow-hidden border border-white/10 shadow-xl block focus:outline-none focus:ring-2 focus:ring-brand-green`} style={{ transform: 'translateY(var(--parallax))' }}>
+            {eager ? (
+              <img
+                src={encodeURI(image)}
+                alt={title}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                className="aspect-[4/3] w-full h-auto object-cover"
+              />
+            ) : (
+              <LazyBg src={image} className="aspect-[4/3] bg-cover bg-center" />
+            )}
+          </Link>
+        ) : (
+          <div className={`${reverse ? 'md:order-2' : ''} rounded-3xl overflow-hidden border border-white/10 shadow-xl`} style={{ transform: 'translateY(var(--parallax))' }}>
+            {eager ? (
+              <img
+                src={encodeURI(image)}
+                alt={title}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                className="aspect-[4/3] w-full h-auto object-cover"
+              />
+            ) : (
+              <LazyBg src={image} className="aspect-[4/3] bg-cover bg-center" />
+            )}
+          </div>
+        )}
         <div className={`${reverse ? 'md:order-1' : ''}`}>
-          <h3 className="text-3xl md:text-4xl font-extrabold text-brand-yellow">{title}</h3>
+          {to ? (
+            <Link to={to} className="text-3xl md:text-4xl font-extrabold text-brand-yellow hover:underline">
+              {title}
+            </Link>
+          ) : (
+            <h3 className="text-3xl md:text-4xl font-extrabold text-brand-yellow">{title}</h3>
+          )}
           <p className="mt-4 text-base md:text-lg text-gray-300 leading-relaxed">{text}</p>
           {text2 && <p className="mt-4 text-base md:text-lg text-gray-300 leading-relaxed">{text2}</p>}
+          {to && (
+            <Link to={to} className="inline-block mt-5 text-sm font-semibold text-brand-yellow hover:underline">Voir le détail →</Link>
+          )}
         </div>
       </div>
     </section>

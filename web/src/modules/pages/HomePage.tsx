@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Hero } from '../home/Hero';
+import { AboutShort } from '../home/AboutShort';
 import { About } from '../home/About';
 import { Values } from '../home/Values';
 import { CallToAction } from '../ui/CallToAction';
@@ -59,6 +60,7 @@ export function HomePage() {
       <About />
       <Values />
       <CallToAction title="Parlons de vos besoins en fruits exotiques" subtitle="Disponibilités, calibres, packaging et délais." />
+      
       <Features />
   
       {items.map((p, i) => (
@@ -70,8 +72,11 @@ export function HomePage() {
           text2={p.longDescription}
           reverse={i % 2 === 1}
           eager={i === 0}
+          to={`/produits/${p.slug}`}
         />
       ))}
+      
+      <AboutShort />
       <GalleryIntro />
       <Gallery />
       <Stats />

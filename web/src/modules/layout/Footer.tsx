@@ -46,9 +46,9 @@ export function Footer() {
             <button className="px-5 py-3 rounded-md bg-brand-green text-white font-semibold">S’abonner</button>
           </form>
           <div className="mt-5 flex items-center gap-5 text-white/80 text-2xl">
-            <a href="#" aria-label="Facebook" className="hover:text-white"><FiFacebook /></a>
-            <a href="#" aria-label="Instagram" className="hover:text-white"><FiInstagram /></a>
-            <a href="#" aria-label="LinkedIn" className="hover:text-white"><FiLinkedin /></a>
+            <a href="https://www.instagram.com/biosuntrade/" target="_blank" rel="noreferrer" aria-label="Facebook (redirigé vers Instagram)" className="hover:text-white"><FiFacebook /></a>
+            <a href="https://www.instagram.com/biosuntrade/" target="_blank" rel="noreferrer" aria-label="Instagram" className="hover:text-white"><FiInstagram /></a>
+            <a href="https://www.linkedin.com/in/biosun-trade-098991384/" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-white"><FiLinkedin /></a>
           </div>
         </div>
       </div>

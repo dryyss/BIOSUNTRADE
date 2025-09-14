@@ -14,18 +14,12 @@
   ExpiresByType image/webp "access plus 30 days"
 </IfModule>
 
-# Single Page App fallback: serve index.html for unknown routes
-RewriteEngine On
-RewriteBase /
-
-# Allow direct requests to files and directories
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
-
-# Otherwise route everything to index.html
-RewriteRule ^ index.html [L]
-
-
-
-
+<IfModule mod_rewrite.c>
+  Options -Multiviews
+  RewriteEngine On
+  RewriteBase /
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  RewriteRule . /index.html [L]
+</IfModule>

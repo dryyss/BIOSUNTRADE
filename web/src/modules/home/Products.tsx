@@ -19,11 +19,11 @@ export function Products() {
             const src1 = encodeURI(primary);
             const src2 = p.secondaryCover ? encodeURI(p.secondaryCover) : null;
             return (
-            <Link key={p.name} to={`/produits/${p.slug}`} className="group block rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur hover:shadow-2xl transition-all focus:outline-none focus:ring-2 focus:ring-brand-green">
+            <Link key={p.name} to={`/produits/${p.slug}`} className="group block rounded-3xl overflow-hidden border border-white/10 bg-white/80 dark:bg-white/5 backdrop-blur hover:shadow-2xl transition-all focus:outline-none focus:ring-2 focus:ring-brand-green">
               <div className="relative h-80 overflow-hidden">
                 <LazyBg src={src1} className="absolute inset-0 bg-cover bg-center transform transition-transform duration-300 group-hover:scale-105" />
                 {src2 && (
-                  <LazyBg src={src2} className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <LazyBg src={src2} manualOpacity className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 )}
                 {p.treeImage && (
                   <span className="absolute top-3 left-3 px-2 py-1 rounded-md text-[11px] font-medium bg-brand-green text-white border border-white/20 shadow">
@@ -32,8 +32,8 @@ export function Products() {
                 )}
               </div>
               <div className="p-8">
-                <h3 className="font-semibold text-lg">{p.name}</h3>
-                <p className="mt-2 text-sm text-gray-300">{p.description}</p>
+                <h3 className="font-semibold text-lg text-gray-900 dark:text-white">{p.name}</h3>
+                <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">{p.description}</p>
                 {p.origins && (
                   <div className="mt-3 flex flex-wrap gap-2 text-xs">
                     {p.origins.map((o) => (
