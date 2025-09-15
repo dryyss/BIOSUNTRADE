@@ -21,9 +21,9 @@ export function Products() {
             return (
             <Link key={p.name} to={`/produits/${p.slug}`} className="group block rounded-3xl overflow-hidden border border-white/10 bg-white/80 dark:bg-white/5 backdrop-blur hover:shadow-2xl transition-all focus:outline-none focus:ring-2 focus:ring-brand-green">
               <div className="relative h-80 overflow-hidden">
-                <LazyBg src={src1} className="absolute inset-0 bg-cover bg-center transform transition-transform duration-300 group-hover:scale-105" />
+                <LazyBg src={src1} className="absolute inset-0 bg-cover bg-center transform transition-transform duration-300 group-hover:scale-105" title={`${p.name} - Export fruits exotiques`} />
                 {src2 && (
-                  <LazyBg src={src2} manualOpacity className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <LazyBg src={src2} manualOpacity className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" title={`${p.name} - Détail produit`} />
                 )}
                 {p.treeImage && (
                   <span className="absolute top-3 left-3 px-2 py-1 rounded-md text-[11px] font-medium bg-brand-green text-white border border-white/20 shadow">

@@ -9,7 +9,9 @@ export function Features() {
   ];
   return (
     <section className="py-14 bg-white/5">
-      <div className="container-section grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="container-section">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">Nos Garanties Qualité Export</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {items.map((it) => {
           const Icon = it.icon;
           return (
@@ -20,6 +22,7 @@ export function Features() {
             </div>
           );
         })}
+        </div>
       </div>
     </section>
   );

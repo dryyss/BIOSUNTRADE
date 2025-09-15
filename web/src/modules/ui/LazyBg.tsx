@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
-type LazyBgProps = { src: string; className?: string; style?: React.CSSProperties; manualOpacity?: boolean };
+type LazyBgProps = { src: string; className?: string; style?: React.CSSProperties; manualOpacity?: boolean; title?: string };
 
-export function LazyBg({ src, className, style, manualOpacity = false }: LazyBgProps) {
+export function LazyBg({ src, className, style, manualOpacity = false, title }: LazyBgProps) {
   const [loaded, setLoaded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -35,7 +35,7 @@ export function LazyBg({ src, className, style, manualOpacity = false }: LazyBgP
 
   const opacityClasses = manualOpacity ? '' : (loaded ? 'opacity-100' : 'opacity-0');
   return (
-    <div ref={ref} className={`${className ?? ''} ${opacityClasses} transition-opacity duration-500`} style={style} />
+    <div ref={ref} className={`${className ?? ''} ${opacityClasses} transition-opacity duration-500`} style={style} title={title} />
   );
 }
 

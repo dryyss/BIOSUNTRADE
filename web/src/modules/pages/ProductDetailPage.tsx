@@ -98,7 +98,7 @@ export function ProductDetailPage() {
         <div className="absolute inset-0 opacity-20" style={{background: 'radial-gradient(circle at 10% 10%, #66BB2E22, transparent 40%), radial-gradient(circle at 90% 20%, #F5A62322, transparent 40%)'}} />
         <div className="container-section py-14 relative grid md:grid-cols-2 gap-8 items-center">
           <motion.div initial={{opacity:0, x:-20}} animate={{opacity:1, x:0}} transition={{duration:.5}}>
-            <h1 className="text-4xl font-extrabold">{product.name}</h1>
+            <h1 className="text-4xl font-extrabold">{product.name} - Export Fruits Exotiques</h1>
             <p className="mt-4 text-gray-300">{product.description}</p>
             {product.origins && product.origins.length > 0 && (
               <div className="mt-4 flex flex-wrap gap-2 text-sm">
@@ -129,7 +129,7 @@ export function ProductDetailPage() {
         </div>
       </section>
       <section className="container-section py-10">
-        <h2 className="text-xl font-semibold">Galerie</h2>
+        <h2 className="text-xl font-semibold">Galerie Photos - {product.name}</h2>
         <div className="mt-4 grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {(() => {
             const list = [product.secondaryCover, ...(product.gallery ?? [])]

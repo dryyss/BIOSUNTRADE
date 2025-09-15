@@ -29,7 +29,7 @@ export function About() {
     <section id="about" className="container-section py-24 lg:py-28 min-h-[70vh]">
       <div className="grid md:grid-cols-2 gap-8 items-center overflow-visible">
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold">Pourquoi Biosun Trade</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">Pourquoi Choisir Biosun Trade pour l'Export de Fruits Exotiques</h2>
           <p className="mt-4 text-gray-300">
             Nous sourçons des fruits exotiques qui ont réellement mûri sur l’arbre, auprès de petits 
             producteurs de confiance. Résultat: plus de goût, plus de nutriments et zéro traitement 

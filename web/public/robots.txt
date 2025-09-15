@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
 
-Sitemap: /sitemap.xml
+# Sitemaps
+Sitemap: https://biosuntrade.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1

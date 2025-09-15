@@ -44,7 +44,7 @@ export function ParallaxFruit({ image, title, text, text2, reverse, eager, to }:
             {eager ? (
               <img
                 src={encodeURI(image)}
-                alt={title}
+                alt={`${title} - Fruits exotiques export qualité professionnelle`}
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
@@ -59,7 +59,7 @@ export function ParallaxFruit({ image, title, text, text2, reverse, eager, to }:
             {eager ? (
               <img
                 src={encodeURI(image)}
-                alt={title}
+                alt={`${title} - Fruits exotiques export qualité professionnelle`}
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"

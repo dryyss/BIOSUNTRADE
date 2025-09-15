@@ -40,7 +40,25 @@ export function HomePage() {
             "@type": "Organization",
             "name": "Biosun Trade",
             "url": "${origin}/",
-            "logo": "${origin}/favicon-256x256.png"
+            "logo": "${origin}/favicon-256x256.png",
+            "description": "Export fruits exotiques mûris sur l'arbre: passion, mangue, gingembre, citron vert, papaye, grenade. Qualité export, traçabilité 100%, logistique express 48h.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Avenue Louise 367",
+              "postalCode": "1050",
+              "addressLocality": "Bruxelles",
+              "addressCountry": "BE"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+32-471-49-40-48",
+              "contactType": "customer service",
+              "availableLanguage": ["French", "English"]
+            },
+            "sameAs": [
+              "https://www.instagram.com/biosuntrade/",
+              "https://www.linkedin.com/in/biosun-trade-098991384/"
+            ]
           }
         `}</script>
         <script type="application/ld+json">{`
@@ -49,11 +67,33 @@ export function HomePage() {
             "@type": "WebSite",
             "name": "Biosun Trade",
             "url": "${origin}/",
+            "description": "Site officiel Biosun Trade - Export fruits exotiques mûris sur l'arbre",
             "potentialAction": {
               "@type": "SearchAction",
               "target": "${origin}/produits?query={search_term_string}",
               "query-input": "required name=search_term_string"
             }
+          }
+        `}</script>
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Biosun Trade",
+            "image": "${origin}/favicon-256x256.png",
+            "description": "Export fruits exotiques mûris sur l'arbre: passion, mangue, gingembre, citron vert, papaye, grenade. Qualité export, traçabilité 100%, logistique express 48h.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Avenue Louise 367",
+              "postalCode": "1050",
+              "addressLocality": "Bruxelles",
+              "addressCountry": "BE"
+            },
+            "telephone": "+32-471-49-40-48",
+            "url": "${origin}/",
+            "priceRange": "$$",
+            "servedCuisine": "Fruits exotiques export",
+            "openingHours": "Mo-Fr 09:00-17:00"
           }
         `}</script>
       </Helmet>
