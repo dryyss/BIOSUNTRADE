@@ -63,8 +63,9 @@ export function ProductDetailPage() {
       <Helmet>
         {(() => { const origin = typeof window !== 'undefined' ? window.location.origin : ''; return (
           <>
-            <title>{product.name} — Biosun Trade</title>
-            <meta name="description" content={product.description} />
+            <title>{product.name} Export | Qualité Professionnelle | Biosun Trade</title>
+            <meta name="description" content={`${product.description} Export professionnel ${product.name.toLowerCase()}, calibres export, traçabilité complète, logistique express. Origines: ${product.origins?.join(', ') || 'Pérou, Colombie'}.`} />
+            <meta name="keywords" content={`${product.name.toLowerCase()} export, ${product.name.toLowerCase()} professionnel, calibres export, traçabilité, logistique fruits, ${product.origins?.join(', ').toLowerCase() || 'pérou colombie'}`} />
             <link rel="canonical" href={`${origin}/produits/${product.slug}`} />
             <meta property="og:type" content="product" />
             <meta property="og:title" content={`${product.name} — Biosun Trade`} />
@@ -75,9 +76,20 @@ export function ProductDetailPage() {
               '@context': 'https://schema.org',
               '@type': 'Product',
               name: product.name,
-              image: [product.couverture || product.secondaryCover, ...(product.gallery || [])].filter(Boolean),
               description: product.description,
+              image: [product.couverture || product.secondaryCover, ...(product.gallery || [])].filter(Boolean),
               brand: { '@type': 'Brand', name: 'Biosun Trade' },
+              category: 'Fruits exotiques',
+              offers: {
+                '@type': 'Offer',
+                availability: 'https://schema.org/InStock',
+                seller: { '@type': 'Organization', name: 'Biosun Trade' }
+              },
+              additionalProperty: product.origins?.map(origin => ({
+                '@type': 'PropertyValue',
+                name: 'Origine',
+                value: origin
+              })) || []
             })}</script>
           </>
         );})()}

@@ -8,8 +8,9 @@ export function ContactPage() {
   return (
     <>
       <Helmet>
-        <title>Contact — Biosun Trade</title>
-        <meta name="description" content="Contactez Biosun Trade pour vos besoins en fruits exotiques: disponibilités, calibres, packaging et délais." />
+        <title>Contact Export Fruits Exotiques | Devis & Disponibilités | Biosun Trade</title>
+        <meta name="description" content="Contactez Biosun Trade pour vos besoins en fruits exotiques export. Devis personnalisés, disponibilités saisonnières, conseils logistiques et calibres professionnels." />
+        <meta name="keywords" content="contact export fruits, devis fruits exotiques, disponibilités fruits, conseils logistiques, calibres professionnels, export fruits" />
         <link rel="canonical" href={`${origin}/contact`} />
         <meta property="og:url" content={`${origin}/contact`} />
         <meta property="og:type" content="website" />

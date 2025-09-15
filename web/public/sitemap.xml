@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>/</loc></url>
-  <url><loc>/produits</loc></url>
-  <url><loc>/contact</loc></url>
-  <url><loc>/produits/fruit-de-la-passion</loc></url>
-  <url><loc>/produits/mangue</loc></url>
-  <url><loc>/produits/gingembre</loc></url>
-  <url><loc>/produits/citron-vert</loc></url>
-  <url><loc>/produits/papaye</loc></url>
-  <url><loc>/produits/grenade</loc></url>
-  <url><loc>/produits/avocat</loc></url>
-  <url><loc>/produits/ananas</loc></url>
+  <url><loc>https://biosuntrade.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority><lastmod>2025-09-15</lastmod></url>
+  <url><loc>https://biosuntrade.com/produits</loc><changefreq>weekly</changefreq><priority>0.9</priority><lastmod>2025-09-15</lastmod></url>
+  <url><loc>https://biosuntrade.com/contact</loc><changefreq>weekly</changefreq><priority>0.7</priority><lastmod>2025-09-15</lastmod></url>
+  <url><loc>https://biosuntrade.com/produits/fruit-de-la-passion</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2025-09-15</lastmod></url>
+  <url><loc>https://biosuntrade.com/produits/mangue</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2025-09-15</lastmod></url>
+  <url><loc>https://biosuntrade.com/produits/gingembre</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2025-09-15</lastmod></url>
+  <url><loc>https://biosuntrade.com/produits/citron-vert</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2025-09-15</lastmod></url>
+  <url><loc>https://biosuntrade.com/produits/papaye</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2025-09-15</lastmod></url>
+  <url><loc>https://biosuntrade.com/produits/grenade</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2025-09-15</lastmod></url>
+  <url><loc>https://biosuntrade.com/produits/avocat</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2025-09-15</lastmod></url>
+  <url><loc>https://biosuntrade.com/produits/ananas</loc><changefreq>weekly</changefreq><priority>0.8</priority><lastmod>2025-09-15</lastmod></url>
 </urlset>

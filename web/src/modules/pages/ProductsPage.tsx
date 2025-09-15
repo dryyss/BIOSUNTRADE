@@ -7,8 +7,9 @@ export function ProductsPage() {
   return (
     <>
       <Helmet>
-        <title>Produits — Biosun Trade</title>
-        <meta name="description" content="Découvrez notre sélection de fruits exotiques: passion, mangue, gingembre, citron vert, papaye, grenade…" />
+        <title>Produits Fruits Exotiques | Export Passion, Mangue, Gingembre | Biosun Trade</title>
+        <meta name="description" content="Catalogue fruits exotiques export: passion, mangue Kent, gingembre, citron vert, papaye, grenade, avocat, ananas. Qualité export, calibres professionnels, traçabilité complète." />
+        <meta name="keywords" content="fruits exotiques catalogue, export passion fruit, mangue Kent export, gingembre frais, citron vert lime, papaye export, grenade, avocat Hass, ananas export, calibres professionnels" />
         <link rel="canonical" href={`${origin}/produits`} />
         <meta property="og:url" content={`${origin}/produits`} />
         <meta property="og:type" content="website" />

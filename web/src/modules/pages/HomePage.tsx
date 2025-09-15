@@ -24,8 +24,9 @@ export function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Biosun Trade — Fruits exotiques mûris sur l’arbre</title>
-        <meta name="description" content="Fruits de la passion, mangue, gingembre, citron vert, papaye, grenade — qualité export, traçabilité et logistique rapide." />
+        <title>Biosun Trade — Export Fruits Exotiques | Mûris sur l'Arbre | Qualité Export</title>
+        <meta name="description" content="Export fruits exotiques mûris sur l'arbre: passion, mangue, gingembre, citron vert, papaye, grenade. Qualité export, traçabilité 100%, logistique express 48h. Producteurs certifiés BIO/GlobalG.A.P." />
+        <meta name="keywords" content="fruits exotiques, export fruits, passion fruit, mangue, gingembre, citron vert, papaye, grenade, qualité export, traçabilité, logistique fruits, producteurs certifiés, BIO, GlobalG.A.P." />
         <link rel="canonical" href={`${origin}/`} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Biosun Trade — Fruits exotiques" />

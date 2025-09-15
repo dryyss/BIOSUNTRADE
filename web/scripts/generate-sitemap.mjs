@@ -5,7 +5,7 @@ const publicDir = path.resolve(process.cwd(), 'public');
 const contentPath = path.join(publicDir, 'content.json');
 const outPath = path.join(publicDir, 'sitemap.xml');
 
-const baseUrl = process.env.SITE_URL || '';
+const baseUrl = process.env.SITE_URL || 'https://biosuntrade.com';
 
 function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 
@@ -18,13 +18,14 @@ async function main() {
   }
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n` +
 `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-Array.from(urls).map((u)=>`  <url><loc>${esc(baseUrl + u)}</loc></url>`).join('\n') +
+Array.from(urls).map((u)=>`  <url><loc>${esc(baseUrl + u)}</loc><changefreq>weekly</changefreq><priority>${u === '/' ? '1.0' : u === '/produits' ? '0.9' : u === '/contact' ? '0.7' : '0.8'}</priority><lastmod>${new Date().toISOString().split('T')[0]}</lastmod></url>`).join('\n') +
 `\n</urlset>\n`;
   fs.writeFileSync(outPath, xml, 'utf8');
   console.log('Sitemap écrit:', outPath);
 }
 
 main().catch((e)=>{ console.error(e); process.exit(1); });
+
 
 
 
